@@ -16,19 +16,20 @@ public class mainTest {
         // Ya está hecha un poco de su lógica. 
           DAOProductos.readProductsFile();
         //Dirrecion y puerto que utilizarán los servicios
+        String SERVER_IP = "localhost";
+        int PORT = 25566;
         //mandar servicio a broker
         Service service = new ServiceCount();
-        service.registerService("localhost", 25566);
+        service.registerService("SERVER_IP", 25566);
         Service service2 = new ServiceList();
-        service2.registerService("localhost", 25566);
+        service2.registerService("SERVER_IP", 25566);
         Service service3 = new ServiceRegister();
-        service3.registerService("localhost", 25566);
+        service3.registerService("SERVER_IP", 25566);
         Service service4 = new ServiceVote();
-        service4.registerService("localhost", 25566);
-        String serverIP = "localhost";
-        int serverPort = 25566;
-         try (ServerSocket serverSocket = new ServerSocket(serverPort)) {
-            System.out.println("Servidor esperando conexiones en el puerto " + serverPort + "...");
+        service4.registerService("SERVER_IP", 25566);
+
+         try (ServerSocket serverSocket = new ServerSocket(PORT)) {
+            System.out.println("Servidor esperando conexiones en el puerto " + PORT + "...");
             // Crea un hilo para manejar la conexión del cliente
           while (true) {
                 Socket clientSocket = serverSocket.accept();
@@ -88,7 +89,7 @@ public class mainTest {
         
         //El método registerService solo funciona con el broker abierto
         //Este método es heredado de la clase Service para todos los servicios
-        //serviceCount.registerService(serverIP, serverPort);
+        //serviceCount.registerService(serverIP, PORT);
         
         
 
