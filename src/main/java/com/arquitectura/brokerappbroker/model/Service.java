@@ -1,12 +1,5 @@
 package com.arquitectura.brokerappbroker.model;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
-
 
 
 public class Service {
@@ -14,18 +7,40 @@ public class Service {
     private String serverIP;
     private int port;
     private int parametersQuantiy;
-     
 
-    public static String processRequest(String request){
-     try {
-        JsonObject jsonObject = Json.createReader(new ByteArrayInputStream(request.getBytes())).readObject();
-        String respuesta = Client.conexion(jsonObject);
-           return respuesta;
-     } catch (Exception e) {
-        e.printStackTrace();
-     }
-        return "";
-        
-        
-    }
+  
+      public String getName() {
+         return name;
+      }
+
+      public void setName(String name) {
+         this.name = name;
+      }
+
+      public String getServerIP() {
+         return serverIP;
+      }
+
+      public void setServerIP(String serverIP) {
+         this.serverIP = serverIP;
+      }
+
+      public int getPort() {
+         return port;
+      }
+
+      public void setPort(int port) {
+         this.port = port;
+      }
+
+      public int getParametersQuantiy() {
+         return parametersQuantiy;
+      }
+
+      public void setParametersQuantiy(int parametersQuantiy) {
+         this.parametersQuantiy = parametersQuantiy;
+      }
+
+
+    
 }

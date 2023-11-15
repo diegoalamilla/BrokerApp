@@ -18,11 +18,8 @@ public class ServiceVote extends Service{
 
     @Override
     public String executeService(String request){
-        byte[] bytes = request.getBytes();
-        InputStream is = new ByteArrayInputStream(bytes);
-        JsonReader jsonReader = Json.createReader(is);
-		JsonObject jsonObject = jsonReader.readObject();
-        jsonReader.close();
+        JsonObject jsonObject = Json.createReader(new ByteArrayInputStream(request.getBytes())).readObject();
+        
         String productToVote = jsonObject.getString("variable1");
         int numberOfVotes = jsonObject.getInt("valor1");
 

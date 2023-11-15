@@ -3,6 +3,7 @@ package com.arquitectura.brokerappbroker.main;
 import java.io.*;
 import java.net.*;
 
+import com.arquitectura.brokerappbroker.model.Broker;
 import com.arquitectura.brokerappbroker.model.Service;
 
 public class serverTest {
@@ -42,8 +43,8 @@ public class serverTest {
                 while ((solicitud = in.readLine()) != null) {
                     System.out.println("Solicitud recibida del cliente: " + solicitud);
                     // Procesa la solicitud y envía la respuesta
-                   String respuestaDelServer = Service.processRequest(solicitud);
-                    String respuesta = "Respuesta del servidor para: " + solicitud + " es:  " + respuestaDelServer ;
+                   String respuestaDelServer = Broker.processRequest(solicitud);
+                    String respuesta = respuestaDelServer ;
                     out.println(respuesta);
                 }
 

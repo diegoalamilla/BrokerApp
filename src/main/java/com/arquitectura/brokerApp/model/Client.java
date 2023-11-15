@@ -5,7 +5,7 @@ import java.io.*;
 import java.net.*;
 
 public class Client {
-    public static void conexion(JsonObject request) throws IOException{
+    public static String conexion(JsonObject request) throws IOException{
         String servidorDireccion = "localhost"; 
         int puerto = 25565; 
 
@@ -20,10 +20,11 @@ public class Client {
 
         String respuesta = in.readLine(); 
         System.out.println( respuesta);
-
+        return respuesta;
     } catch (IOException e) {
         e.printStackTrace();
     }
+    return "";
     }   
 }
 
