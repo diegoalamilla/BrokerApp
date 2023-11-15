@@ -20,13 +20,13 @@ public class mainTest {
         int PORT = 25566;
         //mandar servicio a broker
         Service service = new ServiceCount();
-        service.registerService("SERVER_IP", 25566);
+        service.registerService(SERVER_IP, PORT);
         Service service2 = new ServiceList();
-        service2.registerService("SERVER_IP", 25566);
+        service2.registerService(SERVER_IP, PORT);
         Service service3 = new ServiceRegister();
-        service3.registerService("SERVER_IP", 25566);
+        service3.registerService(SERVER_IP, PORT);
         Service service4 = new ServiceVote();
-        service4.registerService("SERVER_IP", 25566);
+        service4.registerService(SERVER_IP, PORT);
 
          try (ServerSocket serverSocket = new ServerSocket(PORT)) {
             System.out.println("Servidor esperando conexiones en el puerto " + PORT + "...");
