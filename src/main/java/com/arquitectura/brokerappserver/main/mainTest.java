@@ -16,6 +16,15 @@ public class mainTest {
         // Ya está hecha un poco de su lógica. 
           DAOProductos.readProductsFile();
         //Dirrecion y puerto que utilizarán los servicios
+        //mandar servicio a broker
+        Service service = new ServiceCount();
+        service.registerService("localhost", 25566);
+        Service service2 = new ServiceList();
+        service2.registerService("localhost", 25566);
+        Service service3 = new ServiceRegister();
+        service3.registerService("localhost", 25566);
+        Service service4 = new ServiceVote();
+        service4.registerService("localhost", 25566);
         String serverIP = "localhost";
         int serverPort = 25566;
          try (ServerSocket serverSocket = new ServerSocket(serverPort)) {

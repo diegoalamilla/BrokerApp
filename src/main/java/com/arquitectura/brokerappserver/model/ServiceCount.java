@@ -1,6 +1,5 @@
 package com.arquitectura.brokerappserver.model;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.json.Json;
@@ -14,8 +13,8 @@ public class ServiceCount extends Service{
         setParameters(0);
     }
 
-    
-    public String executeService(){
+    @Override
+    public String executeService(String request){
         ArrayList<Producto> listProducts = DAOProductos.getProductsList();
 
         JsonObjectBuilder answerBuilder = Json.createObjectBuilder();

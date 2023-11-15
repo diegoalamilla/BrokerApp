@@ -13,9 +13,20 @@ public class Service {
     private String name;
     private int parameters;
 
+    public Service(){
+        this.name = "";
+        this.parameters = 0;
+    }
+
+    public Service(String name, int parameters){
+        this.name = name;
+        this.parameters = parameters;
+    }
+
     public String getName(){
         return this.name;
     }
+
 
     public int getParameters(){
         return this.parameters;
@@ -45,7 +56,6 @@ public class Service {
         try {
             Client.conexion(requestJSONObject);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         
@@ -54,16 +64,23 @@ public class Service {
     public String executeService(String request){return "";}
      public static String processRequest(String request){
         String response = "";
-        byte[] bytes = request.getBytes();
-        InputStream is = new ByteArrayInputStream(bytes);
-        JsonReader jsonReader = Json.createReader(is);
-		JsonObject jsonObject = jsonReader.readObject();
-        jsonReader.close();
+        JsonObject jsonObject = Json.createReader(new ByteArrayInputStream(request.getBytes())).readObject();
         String serviceName = jsonObject.getString("servicio");
-        String parametersQuantiy = jsonObject.getString("variables");
         if(serviceName.equals("contar")){
            ServiceCount service = new ServiceCount();
-              response = service.executeService();
+              response = service.executeService(request);
+        }
+        if(serviceName.equals("listar")){
+            ServiceList service = new ServiceList();
+            response = service.executeService(request);
+        }
+        if(serviceName.equals("registrar")){
+            ServiceRegister service = new ServiceRegister();
+            response = service.executeService(request);
+        }
+        if(serviceName.equals("votar")){
+            ServiceVote service = new ServiceVote();    
+            response = service.executeService(request);
         }
         return response;
     }
