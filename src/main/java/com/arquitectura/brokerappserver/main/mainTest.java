@@ -14,7 +14,7 @@ public class mainTest {
     public static void main(String[] args) {
         //Por el momento ya está el caparazón de los servicios, y de los servicios votar y contar
         // Ya está hecha un poco de su lógica. 
-          DAOProductos.readProductsFile();
+        DAOProductos.readProductsFile();
         //Dirrecion y puerto que utilizarán los servicios
         String SERVER_IP = "localhost";
         int PORT = 25566;
@@ -58,10 +58,9 @@ public class mainTest {
                 
                 String solicitud;
                 while ((solicitud = in.readLine()) != null) {
-                    System.out.println("Solicitud recibida del cliente: " + solicitud);
+                    System.out.println("Solicitud recibida del broker: " + solicitud);
                     // Procesa la solicitud y envía la respuesta
-                    String respuestaNecesaria  = Service.processRequest(solicitud);
-                    String respuesta = respuestaNecesaria;
+                    String respuesta = Service.processRequest(solicitud);
                     out.println(respuesta);
                 }
 

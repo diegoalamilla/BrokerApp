@@ -16,12 +16,19 @@ public class Broker {
         JsonObject jsonObject = Json.createReader(new ByteArrayInputStream(request.getBytes())).readObject();
         
       if (jsonObject.getString("servicio").equals("registrar")) {
-         return processRegister(request);
+
+        return processRegister(request);
          
       }
       if (jsonObject.getString("servicio").equals("listar") && jsonObject.getString("variables").equals("1")) {
 
-         return processList(jsonObject.getString("valor1"));
+        return processList(jsonObject.getString("valor1"));
+
+      }
+      if(jsonObject.getString("servicio").equals("ejecutar")){
+
+        return processExecute(jsonObject);
+
       }
 
       return Client.conexion(jsonObject);
@@ -82,10 +89,25 @@ public class Broker {
         return "";
      }
 
+    private static String processExecute(JsonObject request){
+        String response = "";
+        if(request.getString("valor1").equals("contar")){
 
-     public static ArrayList<Service> getServices() {
+        }else if(request.getString("valor1").equals("votar")){
+            
+        }else if(request.getString("valor1").equals("registrar")){
+
+        }else if(request.getString("valor1").equals("listar")){
+
+        }
+        return response;
+    }
+
+
+    public static ArrayList<Service> getServices() {
         return listOfServices;
     }
+
     public static Service getService(String name){
         for (int i = 0; i < listOfServices.size(); i++) {
             if(listOfServices.get(i).getName().equals(name)){

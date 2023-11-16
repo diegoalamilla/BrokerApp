@@ -34,6 +34,5 @@ public class ServiceVote extends Service{
                                 .add("valor1",DAOProductos.getNumberofVotesFromProduct(productToVote));
         JsonObject requestJSONObject = answerBuilder.build();
         return requestJSONObject.toString();
-        
     }
 }

@@ -9,6 +9,7 @@ import com.arquitectura.brokerappbroker.model.Service;
 public class serverTest {
 
     public static void main(String[] args) {
+        //Puerto del broker
         int puerto = 25565;
         
         try (ServerSocket serverSocket = new ServerSocket(puerto)) {
@@ -37,7 +38,7 @@ public class serverTest {
         @Override
         public void run() {
             try (PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-                 BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
                 
                 String solicitud;
                 while ((solicitud = in.readLine()) != null) {
