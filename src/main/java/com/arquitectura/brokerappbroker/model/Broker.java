@@ -2,6 +2,7 @@ package com.arquitectura.brokerappbroker.model;
 
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -30,7 +31,8 @@ public class Broker {
       }
       if(jsonObject.getString("servicio").equals("ejecutar")){
 
-        return processExecute(jsonObject);
+        
+        processExecute(jsonObject);
 
       }
 
