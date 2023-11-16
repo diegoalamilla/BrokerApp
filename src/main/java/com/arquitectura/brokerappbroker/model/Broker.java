@@ -101,7 +101,7 @@ public class Broker {
             requestBuilder.add("servicio", "votar")
                             .add("variables", 1)
                                 .add("variable1", request.getString("variable2"))
-                                    .add("valor1", request.getString("valor2"));
+                                    .add("valor1", request.getInt("valor2"));
         }else if(request.getString("valor1").equals("registrar")){
             requestBuilder.add("servicio","registrar")
                             .add("variables",2)
@@ -134,11 +134,21 @@ public class Broker {
                         .add("respuestas",jsonObject.getInt("respuestas")+1)
                             .add("respuesta1","servicio")
                                 .add("valor1",jsonObject.getString("servicio"));
-        for (int i = 0; i < jsonObject.getInt("respuestas"); i++) {
+        if(jsonObject.getString("servicio").equals("listar")){
+            for (int i = 0; i < jsonObject.getInt("respuestas"); i++) {
+                answerBuilder.add("respuesta"+(i+2),jsonObject.getString("respuesta"+(i+1)))
+                                .add("valor"+(i+2),jsonObject.getString("valor"+(i+1)));
+        
+            }
+        }else{
+            for (int i = 0; i < jsonObject.getInt("respuestas"); i++) {
             answerBuilder.add("respuesta"+(i+2),jsonObject.getString("respuesta"+(i+1)))
-                            .add("valor"+(i+2),jsonObject.getString("valor"+(i+1)));
+                            .add("valor"+(i+2),jsonObject.getInt("valor"+(i+1)));
     
         }
+        }
+        
+        
         JsonObject answerJSONObject = answerBuilder.build();
         return answerJSONObject.toString();
 

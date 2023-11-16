@@ -43,8 +43,11 @@ public class ControllerViewClient implements ActionListener {
             processResponse(sendRequestList());
         }else if(this.view.getButtonExecuteService() == e.getSource()){
             JsonObjectBuilder requestBuilder = Json.createObjectBuilder();
-                requestBuilder.add("servicio", "contar")
-                                .add("variables", "0");
+                requestBuilder.add("servicio", "ejecutar")
+                .add("variables", 1)
+                    .add("variable1", "servicio")
+                        .add("valor1", "contar");
+                
             JsonObject requestJSONObject = requestBuilder.build();
             try{
                 Client.conexion(requestJSONObject);
