@@ -10,6 +10,8 @@ import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 
+import org.omg.CORBA.Request;
+
 public class Broker {
     static ArrayList<Service> listOfServices = new ArrayList<>();
 
@@ -17,12 +19,12 @@ public class Broker {
       try {
         JsonObject jsonObject = Json.createReader(new ByteArrayInputStream(request.getBytes())).readObject();
         
-      if (jsonObject.getString("servicio").equals("registrar") && jsonObject.getString("variables").equals("4")) {
+      if (jsonObject.getString("servicio").equals("registrar") && jsonObject.getInt("variables") == 4) {
 
-        return processRegister(request);
+        return processRegister(jsonObject);
          
       }
-      if (jsonObject.getString("servicio").equals("listar") && jsonObject.getString("variables").equals("1")) {
+      if (jsonObject.getString("servicio").equals("listar") && jsonObject.getInt("variables") == 1) {
 
         return processList(jsonObject.getString("valor1"));
 
@@ -66,13 +68,12 @@ public class Broker {
         }
        
     }
-    public static String processRegister(String request){
+    public static String processRegister(JsonObject request){
         try {
-              JsonObject jsonObject = Json.createReader(new ByteArrayInputStream(request.getBytes())).readObject();
-              String serverIP = jsonObject.getString("valor1");
-              int port = jsonObject.getInt("valor2");
-              String serviceName = jsonObject.getString("valor3");
-              int parametersQuantity = jsonObject.getInt("valor4");
+              String serverIP = request.getString("valor1");
+              int port = request.getInt("valor2");
+              String serviceName = request.getString("valor3");
+              int parametersQuantity = request.getInt("valor4");
               Service service = new Service();
               service.setName(serviceName);
               service.setServerIP(serverIP);
@@ -92,35 +93,39 @@ public class Broker {
         return "";
      }
 
-    private static JsonObject processExecute(JsonObject request){
- 
-        JsonObjectBuilder answerBuilder = Json.createObjectBuilder();
+    private static String processExecute(JsonObject request){
+        JsonObjectBuilder requestBuilder = Json.createObjectBuilder();
         if(request.getString("valor1").equals("contar")){
+          requestBuilder.add("servicio","contar")
+                        .add("variables",0);  
 
         }else if(request.getString("valor1").equals("votar")){
-            answerBuilder.add("servicio", "votar")
+            requestBuilder.add("servicio", "votar")
                             .add("variables", 1)
                                 .add("variable1", request.getString("variable2"))
                                     .add("valor1", request.getString("valor2"));
-            JsonObject requestToService = answerBuilder.build();
-            Service service = selectServerWithService(request.getString("servicio"));
-
-            try {
-                //ENVIA YA EL REQUEST Y EL SERVIDOR CON PUERTO AL SERVER CON LOS SERVICIOS AL AZAR
-                Client.conexion(requestToService, service.getServerIP(), service.getPort());
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-
         }else if(request.getString("valor1").equals("registrar")){
+            requestBuilder.add("servicio","registrar")
+                            .add("variables",2)
+                            .add("variable1","evento")
+                            .add("valor1",request.getString("valor2"))
+                            .add("variable2","fecha")
+                            .add("valor2",request.getString("valor3"));
 
         }else if(request.getString("valor1").equals("listar")){
-
+            requestBuilder.add("servicio","listar")
+                            .add("variables",0);
+                            
         }
-
-        JsonObject requestToServer = answerBuilder.build();
-        return requestToServer;
+        Service service = selectServerWithService(request.getString("valor1"));
+        JsonObject requestToServer = requestBuilder.build();
+        try {
+            return Client.conexion(requestToServer , service.getServerIP(), service.getPort());
+        } catch (Exception e) {
+            
+        }
+        return "";
+        
     }
 
 

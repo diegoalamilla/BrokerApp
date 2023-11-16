@@ -72,7 +72,9 @@ public class ControllerViewClient implements ActionListener {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         //en este for poner las respuestas que se reciben
         //creo que se necesita aumentar el numero de columnas en la tabla
+        model.setRowCount(0);
         for(int i = 0; i < numberOfResponses; i++){
+            
             String [] row = {jsonObject.getString("respuesta"+(i+1)), jsonObject.getString("valor"+(i+1))};
             model.addRow(row);
            
@@ -86,7 +88,7 @@ public class ControllerViewClient implements ActionListener {
     private String sendRequestList(){
         JsonObjectBuilder requestBuilder = Json.createObjectBuilder();
             requestBuilder.add("servicio", "listar")
-                            .add("variables", "1")
+                            .add("variables", 1)
                                 .add("variable1", "palabra")
                                     .add("valor1", this.view.getFieldService().getText());
  
@@ -99,5 +101,9 @@ public class ControllerViewClient implements ActionListener {
             e.printStackTrace();
         }
         return "";
+    }
+
+    private void updateTable(DefaultTableModel model){
+        model.setRowCount(0);
     }
 }
