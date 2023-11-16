@@ -103,7 +103,5 @@ public class ControllerViewClient implements ActionListener {
         return "";
     }
 
-    private void updateTable(DefaultTableModel model){
-        model.setRowCount(0);
-    }
+
 }
