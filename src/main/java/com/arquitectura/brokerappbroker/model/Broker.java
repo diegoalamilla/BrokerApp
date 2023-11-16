@@ -2,7 +2,6 @@ package com.arquitectura.brokerappbroker.model;
 
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -10,7 +9,6 @@ import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 
-import org.omg.CORBA.Request;
 
 public class Broker {
     static ArrayList<Service> listOfServices = new ArrayList<>();
@@ -32,11 +30,9 @@ public class Broker {
       if(jsonObject.getString("servicio").equals("ejecutar")){
 
         
-        processExecute(jsonObject);
+        return processResponseToClient(jsonObject);
 
       }
-
-      //return Client.conexion(jsonObject);
 
      } catch (Exception e) {
         e.printStackTrace();
@@ -93,6 +89,8 @@ public class Broker {
         return "";
      }
 
+    
+
     private static String processExecute(JsonObject request){
         JsonObjectBuilder requestBuilder = Json.createObjectBuilder();
         if(request.getString("valor1").equals("contar")){
@@ -128,6 +126,24 @@ public class Broker {
         
     }
 
+    private static String processResponseToClient(JsonObject request){
+        String responseOfServer = processExecute(request);
+        JsonObject jsonObject = Json.createReader(new ByteArrayInputStream(responseOfServer.getBytes())).readObject();
+        JsonObjectBuilder answerBuilder = Json.createObjectBuilder();
+        answerBuilder.add("servicio","ejecutar")
+                        .add("respuestas",jsonObject.getInt("respuestas")+1)
+                            .add("respuesta1","servicio")
+                                .add("valor1",jsonObject.getString("servicio"));
+        for (int i = 0; i < jsonObject.getInt("respuestas"); i++) {
+            answerBuilder.add("respuesta"+(i+2),jsonObject.getString("respuesta"+(i+1)))
+                            .add("valor"+(i+2),jsonObject.getString("valor"+(i+1)));
+    
+        }
+        JsonObject answerJSONObject = answerBuilder.build();
+        return answerJSONObject.toString();
+
+    }
+
 
     public static ArrayList<Service> getServices() {
         return listOfServices;
@@ -153,11 +169,13 @@ public class Broker {
                 servicesEquals.add(service);
             }
         }
-
+        if(servicesEquals.size() == 1){
+            return servicesEquals.get(0);
+        }else{
         Random random = new Random();
-        int numRandom = random.nextInt();
-
+        int numRandom = random.nextInt(listOfServices.size());
         return servicesEquals.get(numRandom);
+        }
     }
 
 }
