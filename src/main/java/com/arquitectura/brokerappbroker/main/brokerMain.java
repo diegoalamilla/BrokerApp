@@ -6,7 +6,7 @@ import java.net.*;
 import com.arquitectura.brokerappbroker.model.Broker;
 import com.arquitectura.brokerappbroker.model.Service;
 
-public class serverTest {
+public class brokerMain {
 
     public static void main(String[] args) {
         //Puerto del broker

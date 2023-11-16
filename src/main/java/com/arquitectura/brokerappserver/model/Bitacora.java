@@ -11,14 +11,14 @@ import java.util.Date;
 
 
 public class Bitacora {
-    
+    final static String BITACORA_PATH = "src/main/resources/resourceserver/bitacora.txt";
     public Bitacora() {
         
     }
 
     public static void registerAction(String action){
         Date date = new Date();
-         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/resourceserver/bitacora.txt", true))) {
+         try (BufferedWriter writer = new BufferedWriter(new FileWriter(BITACORA_PATH, true))) {
                 writer.write(action + " " + date.toString());
                 writer.newLine();
                 } catch (IOException e) {
@@ -28,7 +28,7 @@ public class Bitacora {
 
     public static ArrayList<String> getEvents(){
         ArrayList<String> events = new ArrayList<>();
-         try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/resourcesserver/bitacora.txt"))) {
+         try (BufferedReader reader = new BufferedReader(new FileReader(BITACORA_PATH))) {
             String line;
             while ((line = reader.readLine()) != null)
             events.add(line);
@@ -40,7 +40,7 @@ public class Bitacora {
 
     public static int getNumberofEvents(){
         int numberOfEvents = 0;
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/resourcesserver/bitacora.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(BITACORA_PATH))) {
             while (reader.readLine() != null) numberOfEvents++;
         } catch (IOException e) {
             e.printStackTrace();
@@ -50,7 +50,7 @@ public class Bitacora {
     }
     
     public static void cleanRegister(){
-         File file = new File("src/main/resources/resourceserver/bitacora.txt");
+         File file = new File(BITACORA_PATH);
             if(file.exists()){
                 file.delete();
                 try {

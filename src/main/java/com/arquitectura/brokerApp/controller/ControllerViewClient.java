@@ -46,7 +46,7 @@ public class ControllerViewClient implements ActionListener {
                 requestBuilder.add("servicio", "ejecutar")
                 .add("variables", 1)
                     .add("variable1", "servicio")
-                        .add("valor1", "contar");
+                        .add("valor1", "listar");
                 
             JsonObject requestJSONObject = requestBuilder.build();
             try{
