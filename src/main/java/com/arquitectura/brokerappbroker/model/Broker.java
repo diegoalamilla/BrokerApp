@@ -2,7 +2,9 @@ package com.arquitectura.brokerappbroker.model;
 
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -15,7 +17,7 @@ public class Broker {
       try {
         JsonObject jsonObject = Json.createReader(new ByteArrayInputStream(request.getBytes())).readObject();
         
-      if (jsonObject.getString("servicio").equals("registrar")) {
+      if (jsonObject.getString("servicio").equals("registrar") && jsonObject.getString("variables").equals("4")) {
 
         return processRegister(request);
          
@@ -27,11 +29,12 @@ public class Broker {
       }
       if(jsonObject.getString("servicio").equals("ejecutar")){
 
-        return processExecute(jsonObject);
+        
+        processExecute(jsonObject);
 
       }
 
-      return Client.conexion(jsonObject);
+      //return Client.conexion(jsonObject);
 
      } catch (Exception e) {
         e.printStackTrace();
@@ -89,18 +92,35 @@ public class Broker {
         return "";
      }
 
-    private static String processExecute(JsonObject request){
-        String response = "";
+    private static JsonObject processExecute(JsonObject request){
+ 
+        JsonObjectBuilder answerBuilder = Json.createObjectBuilder();
         if(request.getString("valor1").equals("contar")){
 
         }else if(request.getString("valor1").equals("votar")){
-            
+            answerBuilder.add("servicio", "votar")
+                            .add("variables", 1)
+                                .add("variable1", request.getString("variable2"))
+                                    .add("valor1", request.getString("valor2"));
+            JsonObject requestToService = answerBuilder.build();
+            Service service = selectServerWithService(request.getString("servicio"));
+
+            try {
+                //ENVIA YA EL REQUEST Y EL SERVIDOR CON PUERTO AL SERVER CON LOS SERVICIOS AL AZAR
+                Client.conexion(requestToService, service.getServerIP(), service.getPort());
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
         }else if(request.getString("valor1").equals("registrar")){
 
         }else if(request.getString("valor1").equals("listar")){
 
         }
-        return response;
+
+        JsonObject requestToServer = answerBuilder.build();
+        return requestToServer;
     }
 
 
@@ -119,6 +139,20 @@ public class Broker {
 
     public void setServices(ArrayList<Service> services) {
         Broker.listOfServices = services;
+    }
+
+    private static Service selectServerWithService(String serviceName){
+        ArrayList<Service> servicesEquals = new ArrayList<>();
+        for(Service service : listOfServices){
+            if(service.getName().equals(serviceName)){
+                servicesEquals.add(service);
+            }
+        }
+
+        Random random = new Random();
+        int numRandom = random.nextInt();
+
+        return servicesEquals.get(numRandom);
     }
 
 }

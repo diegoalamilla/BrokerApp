@@ -4,9 +4,9 @@ import java.io.*;
 import java.net.*;
 
 public class Client {
-    public static String conexion(JsonObject request) throws IOException{
-        String servidorDireccion = "localhost"; 
-        int puerto = 25566; 
+    public static String conexion(JsonObject request, String ip, int port) throws IOException{
+        String servidorDireccion = ip; 
+        int puerto = port; 
 
     try (Socket socket = new Socket(servidorDireccion, puerto);
          PrintWriter out = new PrintWriter(socket.getOutputStream(), true);

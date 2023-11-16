@@ -44,7 +44,7 @@ public class serverTest {
                 while ((solicitud = in.readLine()) != null) {
                     System.out.println("Solicitud recibida del cliente: " + solicitud);
                     // Procesa la solicitud y envía la respuesta
-                   String respuestaDelServer = Broker.processRequest(solicitud);
+                    String respuestaDelServer = Broker.processRequest(solicitud);
                     String respuesta = respuestaDelServer ;
                     out.println(respuesta);
                 }
