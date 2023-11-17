@@ -37,7 +37,6 @@ public class ControllerViewVote implements ActionListener{
                 this.view.getLabelActualVotes().setText(String.valueOf(numberOfVotes));
 
             } catch (IOException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
 
