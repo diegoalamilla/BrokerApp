@@ -3,3 +3,18 @@ Se registro un voto para el productoMordisko Fri Nov 17 00:33:52 CST 2023
 Se registro un voto para el productoMordisko Fri Nov 17 00:34:41 CST 2023
 Se registr? 5 voto(s) para el producto: Mordisko Fri Nov 17 00:37:01 CST 2023
 Se ha registrado 10 voto(s) para el producto: Helado de oreo Fri Nov 17 00:37:56 CST 2023
+Se ha registrado 1 voto(s) para el producto: Bananas con chocolate Fri Nov 17 09:18:32 CST 2023
+Se ha registrado 1 voto(s) para el producto: Bananas con chocolate Fri Nov 17 09:18:34 CST 2023
+Se ha registrado 1 voto(s) para el producto: Mordisko Fri Nov 17 09:32:37 CST 2023
+Se ha registrado 1 voto(s) para el producto: Mordisko Fri Nov 17 09:32:41 CST 2023
+Se ha registrado 1 voto(s) para el producto: Mordisko Fri Nov 17 09:32:42 CST 2023
+Se ha registrado 1 voto(s) para el producto: Bananas con chocolate Fri Nov 17 09:32:43 CST 2023
+Se ha registrado 1 voto(s) para el producto: Helado de oreo Fri Nov 17 09:32:46 CST 2023
+Se ha registrado 1 voto(s) para el producto: Helado de oreo Fri Nov 17 09:32:47 CST 2023
+Se ha registrado 1 voto(s) para el producto: Bananas con chocolate Fri Nov 17 09:34:43 CST 2023
+Se ha registrado 1 voto(s) para el producto: Bananas con chocolate Fri Nov 17 09:34:44 CST 2023
+Se ha registrado 1 voto(s) para el producto: Bananas con chocolate Fri Nov 17 09:34:45 CST 2023
+Se ha registrado 2 voto(s) para el producto: Bananas con chocolate Fri Nov 17 09:34:59 CST 2023
+Se ha registrado 2 voto(s) para el producto: Bananas con chocolate Fri Nov 17 09:35:00 CST 2023
+Se ha registrado 1 voto(s) para el producto: Mordisko Fri Nov 17 09:46:29 CST 2023
+Se ha registrado 3 voto(s) para el producto: Helado de oreo Fri Nov 17 10:01:52 CST 2023

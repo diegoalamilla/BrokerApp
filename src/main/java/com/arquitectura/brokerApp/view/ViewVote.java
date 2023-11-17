@@ -5,6 +5,7 @@
 package com.arquitectura.brokerApp.view;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -30,13 +31,14 @@ public class ViewVote extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        fieldProduct = new javax.swing.JTextField();
         fieldNumberOfVotes = new javax.swing.JTextField();
         labelProducto = new javax.swing.JLabel();
         labelNumberOfVotes = new javax.swing.JLabel();
         labelTitle = new javax.swing.JLabel();
         buttonVote = new javax.swing.JButton();
         labelActualVotes = new javax.swing.JLabel();
+        comboProducts = new javax.swing.JComboBox<>();
+        buttonBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(300, 200));
@@ -50,6 +52,10 @@ public class ViewVote extends javax.swing.JFrame {
 
         buttonVote.setText("Votar!");
 
+        comboProducts.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        buttonBack.setText("Regresar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -57,42 +63,45 @@ public class ViewVote extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(168, 168, 168)
+                        .addComponent(labelTitle))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(buttonVote)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(labelActualVotes))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(labelProducto)
                                     .addComponent(labelNumberOfVotes))
-                                .addGap(66, 66, 66)
+                                .addGap(54, 54, 54)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fieldNumberOfVotes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(fieldProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(buttonVote)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 209, Short.MAX_VALUE)
-                                .addComponent(labelActualVotes))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(168, 168, 168)
-                        .addComponent(labelTitle)))
-                .addGap(80, 80, 80))
+                                    .addComponent(fieldNumberOfVotes)
+                                    .addComponent(comboProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonBack)
+                .addGap(39, 39, 39))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(labelTitle)
-                .addGap(30, 30, 30)
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fieldProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelProducto))
-                .addGap(43, 43, 43)
+                    .addComponent(labelProducto)
+                    .addComponent(comboProducts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldNumberOfVotes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelNumberOfVotes))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonVote)
-                    .addComponent(labelActualVotes))
+                    .addComponent(labelActualVotes)
+                    .addComponent(buttonBack))
                 .addGap(43, 43, 43))
         );
 
@@ -150,13 +159,22 @@ public class ViewVote extends javax.swing.JFrame {
         this.fieldNumberOfVotes = fieldNumberOfVotes;
     }
 
-    public JTextField getFieldProduct() {
-        return fieldProduct;
+    public JButton getButtonBack() {
+        return buttonBack;
     }
 
-    public void setFieldProduct(JTextField fieldProduct) {
-        this.fieldProduct = fieldProduct;
+    public void setButtonBack(JButton buttonBack) {
+        this.buttonBack = buttonBack;
     }
+
+    public JComboBox<String> getComboProducts() {
+        return comboProducts;
+    }
+
+    public void setComboProducts(JComboBox<String> comboProducts) {
+        this.comboProducts = comboProducts;
+    }
+
 
     
 
@@ -193,9 +211,10 @@ public class ViewVote extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonBack;
     private javax.swing.JButton buttonVote;
+    private javax.swing.JComboBox<String> comboProducts;
     private javax.swing.JTextField fieldNumberOfVotes;
-    private javax.swing.JTextField fieldProduct;
     private javax.swing.JLabel labelActualVotes;
     private javax.swing.JLabel labelNumberOfVotes;
     private javax.swing.JLabel labelProducto;

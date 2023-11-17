@@ -1,12 +1,12 @@
 package com.arquitectura.brokerappserver.model;
 
 import java.io.ByteArrayInputStream;
-import java.io.InputStream;
+
 
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
-import javax.json.JsonReader;
+
 
 
 public class ServiceVote extends Service{

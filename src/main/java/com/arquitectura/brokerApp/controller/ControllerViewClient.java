@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.sql.Array;
 import java.util.ArrayList;
 
 import javax.json.Json;
@@ -51,7 +50,7 @@ public class ControllerViewClient implements ActionListener {
         if(this.model.getValueAt(this.view.getTableServices().getSelectedRow(), 0).equals("votar")){
         
             ViewVote viewVote = new ViewVote();
-            ControllerViewVote controllerViewVote = new ControllerViewVote(viewVote);
+            ControllerViewVote controllerViewVote = new ControllerViewVote(viewVote, getCountRequest());
         }
         if(this.model.getValueAt(this.view.getTableServices().getSelectedRow(), 0).equals("listar")){
             ViewLog viewLog = new ViewLog();
