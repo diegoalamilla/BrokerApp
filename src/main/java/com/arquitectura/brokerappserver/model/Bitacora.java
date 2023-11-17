@@ -7,7 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
+
 
 
 public class Bitacora {
@@ -16,10 +16,10 @@ public class Bitacora {
         
     }
 
-    public static void registerAction(String action){
-        Date date = new Date();
+    public static void registerAction(String action, String date){
+        
          try (BufferedWriter writer = new BufferedWriter(new FileWriter(BITACORA_PATH, true))) {
-                writer.write(action + " " + date.toString());
+                writer.write(action + " " + date);
                 writer.newLine();
                 } catch (IOException e) {
                 e.printStackTrace();

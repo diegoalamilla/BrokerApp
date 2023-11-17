@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.Date;
 
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -29,9 +30,10 @@ public class ControllerViewVote implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
         if(this.view.getButtonVote() == e.getSource()){
-            JsonObject request = getRequest();
+            JsonObject request = getVoteRequest();
             try {
                 String response = Client.conexion(request);
+                getRegisterRequest();
                 JsonObject jsonObject = Json.createReader(new ByteArrayInputStream(response.getBytes())).readObject();
                 int numberOfVotes = jsonObject.getInt("valor2");
                 this.view.getLabelActualVotes().setText(String.valueOf(numberOfVotes));
@@ -43,7 +45,7 @@ public class ControllerViewVote implements ActionListener{
         }
     }
 
-    private JsonObject getRequest(){
+    private JsonObject getVoteRequest(){
         JsonObjectBuilder requestVoteBuilder = Json.createObjectBuilder();
         requestVoteBuilder.add("servicio","ejecutar")
                             .add("variables","2")
@@ -52,5 +54,25 @@ public class ControllerViewVote implements ActionListener{
                             .add("variable2",this.view.getFieldProduct().getText())
                             .add("valor2",Integer.parseInt(this.view.getFieldNumberOfVotes().getText()));
         return requestVoteBuilder.build();        
+    }
+
+    private void getRegisterRequest(){
+        JsonObjectBuilder requestVoteBuilder = Json.createObjectBuilder();
+        Date date = new Date();
+        requestVoteBuilder.add("servicio","ejecutar")
+                            .add("variables","3")
+                            .add("variable1","servicio")
+                            .add("valor1","registrar")
+                            .add("variable2","evento")
+                            .add("valor2","Se ha registrado "+ this.view.getFieldNumberOfVotes().getText() +" voto(s) para el producto: "+this.view.getFieldProduct().getText())
+                            .add("variable3", "fecha")
+                            .add("valor3", date.toString() );
+        try {
+            String response = Client.conexion(requestVoteBuilder.build());
+            JsonObject jsonObject = Json.createReader(new ByteArrayInputStream(response.getBytes())).readObject();
+            System.out.println(jsonObject.getString("respuesta1"));
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
     }
 }

@@ -1,7 +1,5 @@
-ALB
-fsafsasfsafsafs
-ADIOS MUNDO
-fsafsafasffsafsa
-fsafsafsafsaf
-fasfsafsaffas
-HOLA MUNDO
+
+Se registro un voto para el productoMordisko Fri Nov 17 00:33:52 CST 2023
+Se registro un voto para el productoMordisko Fri Nov 17 00:34:41 CST 2023
+Se registr? 5 voto(s) para el producto: Mordisko Fri Nov 17 00:37:01 CST 2023
+Se ha registrado 10 voto(s) para el producto: Helado de oreo Fri Nov 17 00:37:56 CST 2023
