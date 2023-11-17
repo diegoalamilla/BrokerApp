@@ -29,32 +29,34 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="labelProducto" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelNumberOfVotes" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="fieldNumberOfVotes" min="-2" max="-2" attributes="0"/>
-                                  <Component id="fieldProduct" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="buttonVote" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="209" max="32767" attributes="0"/>
-                              <Component id="labelActualVotes" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="168" max="-2" attributes="0"/>
                       <Component id="labelTitle" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="buttonVote" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="labelActualVotes" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="labelProducto" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelNumberOfVotes" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="fieldNumberOfVotes" max="32767" attributes="0"/>
+                                  <Component id="comboProducts" min="-2" pref="100" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="buttonBack" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -63,12 +65,12 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="labelTitle" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="fieldProduct" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="labelProducto" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="comboProducts" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="fieldNumberOfVotes" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="labelNumberOfVotes" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -77,6 +79,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="buttonVote" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="labelActualVotes" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonBack" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
           </Group>
@@ -84,8 +87,6 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="fieldProduct">
-    </Component>
     <Component class="javax.swing.JTextField" name="fieldNumberOfVotes">
     </Component>
     <Component class="javax.swing.JLabel" name="labelProducto">
@@ -112,6 +113,26 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelActualVotes">
+    </Component>
+    <Component class="javax.swing.JComboBox" name="comboProducts">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonBack">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Regresar"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

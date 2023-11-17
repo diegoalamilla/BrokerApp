@@ -8,7 +8,7 @@ import org.jfree.chart.ChartPanel;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.CategoryLabelPositions;
@@ -18,8 +18,6 @@ import org.jfree.chart.renderer.category.CategoryItemRenderer;
 import org.jfree.chart.renderer.category.StackedBarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-import com.arquitectura.brokerappserver.model.DAOProductos;
-import com.arquitectura.brokerappserver.model.Producto;
 /**
  *
  * @author Miguel

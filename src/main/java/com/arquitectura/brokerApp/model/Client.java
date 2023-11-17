@@ -7,7 +7,7 @@ import java.net.*;
 public class Client {
     public static String conexion(JsonObject request) throws IOException{
         String servidorDireccion = "localhost"; 
-        int puerto = 25565; 
+        int puerto = 90; 
 
     try (Socket socket = new Socket(servidorDireccion, puerto);
          PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
@@ -19,7 +19,7 @@ public class Client {
         out.println(solicitud); 
 
         String respuesta = in.readLine(); 
-        System.out.println( respuesta);
+        System.out.println("Respuesta del broker: " + respuesta);
         return respuesta;
     } catch (IOException e) {
         e.printStackTrace();
