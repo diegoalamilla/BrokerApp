@@ -10,7 +10,7 @@ public class brokerMain {
 
     public static void main(String[] args) {
         //Puerto del broker
-        int puerto = 90;
+        int puerto = 25565;
         
         try (ServerSocket serverSocket = new ServerSocket(puerto)) {
             System.out.println("Broker esperando conexiones en el puerto " + puerto + "...");

@@ -48,7 +48,7 @@ public class Broker {
                         .add("respuestas",listOfServices.size());
         for (int i = 0; i < listOfServices.size(); i++) {
             answerBuilder.add("respuesta"+(i+1),listOfServices.get(i).getName())
-                        .add("valor"+(i+1),listOfServices.get(i).getServerIP());
+                        .add("valor"+(i+1),listOfServices.get(i).getServerIP()+":"+String.valueOf(listOfServices.get(i).getPort()));
         }
         JsonObject requestJSONObject = answerBuilder.build();
         return requestJSONObject.toString();
@@ -58,7 +58,7 @@ public class Broker {
             answerBuilder.add("servicio","listar")
                         .add("respuestas",1)
                         .add("respuesta1",serviceNeeded.getName())
-                        .add("valor1",serviceNeeded.getServerIP());
+                        .add("valor1",serviceNeeded.getServerIP()+":"+String.valueOf(serviceNeeded.getPort()));
             JsonObject requestJSONObject = answerBuilder.build();
             return requestJSONObject.toString();
         }
