@@ -50,7 +50,7 @@ public class ControllerViewClient implements ActionListener {
         if(this.model.getValueAt(this.view.getTableServices().getSelectedRow(), 0).equals("votar")){
         
             ViewVote viewVote = new ViewVote();
-            ControllerViewVote controllerViewVote = new ControllerViewVote(viewVote);
+            ControllerViewVote controllerViewVote = new ControllerViewVote(viewVote, getCountRequest());
         }
         if(this.model.getValueAt(this.view.getTableServices().getSelectedRow(), 0).equals("listar")){
             ViewLog viewLog = new ViewLog();

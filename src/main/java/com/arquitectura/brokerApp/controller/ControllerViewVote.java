@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.json.Json;
@@ -15,19 +16,22 @@ import com.arquitectura.brokerApp.model.Client;
 
 public class ControllerViewVote implements ActionListener{
     private ViewVote view;
-
-    public ControllerViewVote(ViewVote viewVote){
+    
+    public ControllerViewVote(ViewVote viewVote, JsonObject request){
         this.view = viewVote;
 
         this.view.getButtonVote().addActionListener(this);
         this.view.getButtonBack().addActionListener(this);
 
+        ArrayList<String> products = getProductsList(request);
+        
+
         this.view.setVisible(true);
 
         this.view.getComboProducts().removeAllItems();
-        this.view.getComboProducts().addItem("Bananas con chocolate");
-        this.view.getComboProducts().addItem("Mordisko");
-        this.view.getComboProducts().addItem("Helado de oreo");
+        this.view.getComboProducts().addItem(products.get(0));
+        this.view.getComboProducts().addItem(products.get(1));
+        this.view.getComboProducts().addItem(products.get(2));
         this.view.getFieldNumberOfVotes().setText("1");
     }
 
@@ -74,11 +78,24 @@ public class ControllerViewVote implements ActionListener{
                             .add("variable3", "fecha")
                             .add("valor3", date.toString() );
         try {
-            String response = Client.conexion(requestVoteBuilder.build());
-            JsonObject jsonObject = Json.createReader(new ByteArrayInputStream(response.getBytes())).readObject();
-            System.out.println(jsonObject.getString("respuesta1"));
+            Client.conexion(requestVoteBuilder.build());
         } catch (Exception e) {
-            // TODO: handle exception
         }
     }
+
+    private ArrayList<String> getProductsList(JsonObject request){
+         try {
+                String response = Client.conexion(request);
+                JsonObject jsonObject = Json.createReader(new ByteArrayInputStream(response.getBytes())).readObject();
+                ArrayList<String> products = new ArrayList<String>();
+                for (int i = 2; i < jsonObject.getInt("respuestas")+1; i++) {
+                    products.add(jsonObject.getString("respuesta"+(i)));
+                }
+                return products;
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+    }
+
 }

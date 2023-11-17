@@ -16,3 +16,5 @@ Se ha registrado 1 voto(s) para el producto: Bananas con chocolate Fri Nov 17 09
 Se ha registrado 1 voto(s) para el producto: Bananas con chocolate Fri Nov 17 09:34:45 CST 2023
 Se ha registrado 2 voto(s) para el producto: Bananas con chocolate Fri Nov 17 09:34:59 CST 2023
 Se ha registrado 2 voto(s) para el producto: Bananas con chocolate Fri Nov 17 09:35:00 CST 2023
+Se ha registrado 1 voto(s) para el producto: Mordisko Fri Nov 17 09:46:29 CST 2023
+Se ha registrado 3 voto(s) para el producto: Helado de oreo Fri Nov 17 10:01:52 CST 2023
