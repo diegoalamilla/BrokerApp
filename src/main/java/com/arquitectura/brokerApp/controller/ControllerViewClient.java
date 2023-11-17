@@ -52,14 +52,17 @@ public class ControllerViewClient implements ActionListener {
         
             ViewVote viewVote = new ViewVote();
             ControllerViewVote controllerViewVote = new ControllerViewVote(viewVote);
-        }else if(this.model.getValueAt(this.view.getTableServices().getSelectedRow(), 0).equals("contar")){
+        }
+        if(this.model.getValueAt(this.view.getTableServices().getSelectedRow(), 0).equals("listar")){
+            ViewLog viewLog = new ViewLog();
+            ControllerViewLog controllerViewLog = new ControllerViewLog(viewLog);
+        }
+        if(this.model.getValueAt(this.view.getTableServices().getSelectedRow(), 0).equals("contar")){
 
             GraficaBarrasVista graficaBarrasVista = new GraficaBarrasVista();
             GraficaPastelVista graficaPastelVista = new GraficaPastelVista();
             countService(graficaBarrasVista, graficaPastelVista);
 
-        }else if(this.model.getValueAt(this.view.getTableServices().getSelectedRow(), 0).equals("listar")){
-            
         }
 
     }
