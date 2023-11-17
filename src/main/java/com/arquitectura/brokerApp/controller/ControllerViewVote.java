@@ -69,10 +69,8 @@ public class ControllerViewVote implements ActionListener{
                             .add("valor3", date.toString() );
         try {
             String response = Client.conexion(requestVoteBuilder.build());
-            JsonObject jsonObject = Json.createReader(new ByteArrayInputStream(response.getBytes())).readObject();
-            System.out.println(jsonObject.getString("respuesta1"));
+            System.out.println(response);
         } catch (Exception e) {
-            // TODO: handle exception
         }
     }
 }
