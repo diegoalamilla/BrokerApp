@@ -4,7 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-
+import java.sql.Array;
+import java.util.ArrayList;
 
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -51,12 +52,19 @@ public class ControllerViewClient implements ActionListener {
         
             ViewVote viewVote = new ViewVote();
             ControllerViewVote controllerViewVote = new ControllerViewVote(viewVote);
-        }else if(this.model.getValueAt(this.view.getTableServices().getSelectedRow(), 1).equals("contar")){
-        
+        }else if(this.model.getValueAt(this.view.getTableServices().getSelectedRow(), 0).equals("contar")){
+
+            GraficaBarrasVista graficaBarrasVista = new GraficaBarrasVista();
+            GraficaPastelVista graficaPastelVista = new GraficaPastelVista();
+            countService(graficaBarrasVista, graficaPastelVista);
+
+        }else if(this.model.getValueAt(this.view.getTableServices().getSelectedRow(), 0).equals("listar")){
+            
         }
 
     }
 
+    
     private void initializeView(){
         this.view.getButtonEnlist().addActionListener(this);
         this.view.getButtonExecuteService().addActionListener(this);
@@ -102,6 +110,36 @@ public class ControllerViewClient implements ActionListener {
             e.printStackTrace();
         }
         return "";
+    }
+
+    private void countService(GraficaBarrasVista graficaBarrasVista, GraficaPastelVista graficaPastelVista){
+            JsonObject request = getCountRequest();
+            try {
+                String response = Client.conexion(request);
+                JsonObject jsonObject = Json.createReader(new ByteArrayInputStream(response.getBytes())).readObject();
+                ArrayList<String> products = new ArrayList<String>();
+                ArrayList<Integer> numberOfVotes = new ArrayList<Integer>();
+                for (int i = 2; i < jsonObject.getInt("respuestas")+1; i++) {
+                    products.add(jsonObject.getString("respuesta"+(i)));
+                    numberOfVotes.add(jsonObject.getInt("valor"+(i)));
+                }
+                graficaBarrasVista.updateChart(products, numberOfVotes);
+                graficaPastelVista.updateChart(products, numberOfVotes);
+
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+
+        }
+    
+
+    private JsonObject getCountRequest(){
+        JsonObjectBuilder requestVoteBuilder = Json.createObjectBuilder();
+        requestVoteBuilder.add("servicio","ejecutar")
+                            .add("variables",1)
+                            .add("variable1","servicio")
+                            .add("valor1","contar");
+        return requestVoteBuilder.build();        
     }
 
     
