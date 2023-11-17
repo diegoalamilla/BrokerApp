@@ -10,7 +10,7 @@ import java.net.Socket;
 
 import com.arquitectura.brokerappserver.model.*;
 
-public class mainTest {
+public class servicesMain {
     public static void main(String[] args) {
         //Por el momento ya está el caparazón de los servicios, y de los servicios votar y contar
         // Ya está hecha un poco de su lógica. 

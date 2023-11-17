@@ -4,9 +4,9 @@ import java.io.*;
 import java.net.*;
 
 import com.arquitectura.brokerappbroker.model.Broker;
-import com.arquitectura.brokerappbroker.model.Service;
 
-public class serverTest {
+
+public class brokerMain {
 
     public static void main(String[] args) {
         //Puerto del broker
@@ -46,6 +46,7 @@ public class serverTest {
                     // Procesa la solicitud y envía la respuesta
                     String respuestaDelServer = Broker.processRequest(solicitud);
                     String respuesta = respuestaDelServer ;
+                    
                     out.println(respuesta);
                 }
 

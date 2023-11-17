@@ -28,7 +28,7 @@ public class Bitacora {
 
     public static ArrayList<String> getEvents(){
         ArrayList<String> events = new ArrayList<>();
-         try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/resourcesserver/bitacora.txt"))) {
+         try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/resourceserver/bitacora.txt"))) {
             String line;
             while ((line = reader.readLine()) != null)
             events.add(line);
@@ -40,7 +40,7 @@ public class Bitacora {
 
     public static int getNumberofEvents(){
         int numberOfEvents = 0;
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/resourcesserver/bitacora.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/resourceserver/bitacora.txt"))) {
             while (reader.readLine() != null) numberOfEvents++;
         } catch (IOException e) {
             e.printStackTrace();
