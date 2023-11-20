@@ -27,3 +27,8 @@ Se registr� un nuevo voto en la fecha: Fri Nov 17 09:35:00 CST 2023
 Se registr� un nuevo voto en la fecha: Fri Nov 17 09:35:00 CST 2023
 Se registró un nuevo voto en la fecha: Fri Nov 17 14:18:36 CST 2023
 Se registró un nuevo voto en la fecha: Fri Nov 17 14:18:37 CST 2023
+Se registró un nuevo voto en la fecha: Sun Nov 19 16:22:04 CST 2023
+Se registró un nuevo voto en la fecha: Sun Nov 19 16:22:05 CST 2023
+Se registró un nuevo voto en la fecha: Sun Nov 19 18:21:30 CST 2023
+Se registró un nuevo voto en la fecha: Sun Nov 19 18:21:31 CST 2023
+Se registró un nuevo voto en la fecha: Sun Nov 19 18:21:31 CST 2023

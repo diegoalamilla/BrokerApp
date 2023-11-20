@@ -13,6 +13,135 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
+<profiles>
+     <profile>
+        <id>broker</id>
+        <build>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>3.3.0</version> <!-- O la versión que estés utilizando -->
+                    <configuration>
+                        <descriptorRefs>
+                            <descriptorRef>jar-with-dependencies</descriptorRef>
+                        </descriptorRefs>
+                        <finalName>broker-app</finalName> <!-- Nombre del archivo JAR -->
+                        <appendAssemblyId>false</appendAssemblyId>
+                        <includeBaseDirectory>false</includeBaseDirectory>
+                        <archive>
+                            <manifest>
+                                <mainClass>com.arquitectura.brokerappbroker.main.brokerMain</mainClass> <!-- Reemplaza con la ruta de tu clase principal -->
+                            </manifest>
+                        </archive>
+                        <fileSets>
+                            <fileSet>
+                                <directory>${project.build.directory}/dependency-jars</directory>
+                                <outputDirectory>/</outputDirectory>
+                                <includes>
+                                    <include>*.jar</include>
+                                </includes>
+                            </fileSet>
+                        </fileSets>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>make-assembly</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>single</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
+    <profile>
+        <id>client</id>
+        <build>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>3.3.0</version> <!-- O la versión que estés utilizando -->
+                    <configuration>
+                        <descriptorRefs>
+                            <descriptorRef>jar-with-dependencies</descriptorRef>
+                        </descriptorRefs>
+                        <finalName>client-app</finalName> <!-- Nombre del archivo JAR -->
+                        <appendAssemblyId>false</appendAssemblyId>
+                        <includeBaseDirectory>false</includeBaseDirectory>
+                        <archive>
+                            <manifest>
+                                <mainClass>com.arquitectura.brokerApp.main.clientMain</mainClass> <!-- Reemplaza con la ruta de tu clase principal -->
+                            </manifest>
+                        </archive>
+                        <fileSets>
+                            <fileSet>
+                                <directory>${project.build.directory}/dependency-jars</directory>
+                                <outputDirectory>/</outputDirectory>
+                                <includes>
+                                    <include>*.jar</include>
+                                </includes>
+                            </fileSet>
+                        </fileSets>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>make-assembly</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>single</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
+    <profile>
+        <id>server</id>
+        <build>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>3.3.0</version> <!-- O la versión que estés utilizando -->
+                    <configuration>
+                        <descriptorRefs>
+                            <descriptorRef>jar-with-dependencies</descriptorRef>
+                        </descriptorRefs>
+                        <finalName>server-app</finalName> <!-- Nombre del archivo JAR -->
+                        <appendAssemblyId>false</appendAssemblyId>
+                        <includeBaseDirectory>false</includeBaseDirectory>
+                        <archive>
+                            <manifest>
+                                <mainClass>com.arquitectura.brokerappserver.main.servicesMain</mainClass> <!-- Reemplaza con la ruta de tu clase principal -->
+                            </manifest>
+                        </archive>
+                        <fileSets>
+                            <fileSet>
+                                <directory>${project.build.directory}/dependency-jars</directory>
+                                <outputDirectory>/</outputDirectory>
+                                <includes>
+                                    <include>*.jar</include>
+                                </includes>
+                            </fileSet>
+                        </fileSets>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>make-assembly</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>single</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
+</profiles>
+
     <dependencies>
         <dependency>
 	        <groupId>org.glassfish</groupId>
@@ -31,5 +160,28 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>3.2.0</version> <!-- O la versión que estés utilizando -->
+            <executions>
+                <execution>
+                    <id>copy-dependencies</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>copy-dependencies</goal>
+                    </goals>
+                    <configuration>
+                        <outputDirectory>${project.build.directory}/dependency-jars</outputDirectory>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+        </plugins>
+    </build>
+    
 
 </project>
