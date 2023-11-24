@@ -12,6 +12,8 @@ import javax.json.JsonObjectBuilder;
 
 public class Broker {
     static ArrayList<Service> listOfServices = new ArrayList<>();
+    private static String tempIp = "";
+    private static int tempPort = 0;
 
     public static String processRequest(String request){
       try {
@@ -92,6 +94,7 @@ public class Broker {
     
 
     private static String processExecute(JsonObject request){
+
         JsonObjectBuilder requestBuilder = Json.createObjectBuilder();
         if(request.getString("valor1").equals("contar")){
           requestBuilder.add("servicio","contar")
@@ -116,14 +119,34 @@ public class Broker {
                             
         }
         Service service = selectServerWithService(request.getString("valor1"));
+
+        if(service.getName().equals("contar")){
+            setTempIp(service.getServerIP());
+            setTempPort(service.getPort());
+        }
+
         JsonObject requestToServer = requestBuilder.build();
+
         try {
+            if(service.getName().equals("votar")){
+                System.out.println("El servicio votar se ejecutará en el servidor: " + tempIp + ":" + tempPort);
+                return Client.conexion(requestToServer, tempIp, tempPort);
+            }
+
             return Client.conexion(requestToServer , service.getServerIP(), service.getPort());
         } catch (Exception e) {
             
         }
         return "";
         
+    }
+
+    private static void setTempIp(String ip){
+        tempIp = ip;
+    }
+
+    private static void setTempPort(int port){
+        tempPort = port;
     }
 
     private static String processResponseToClient(JsonObject request){
