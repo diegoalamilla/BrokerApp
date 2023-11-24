@@ -4,6 +4,7 @@ package com.arquitectura.brokerappbroker.model;
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.SplittableRandom;
 
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -128,7 +129,7 @@ public class Broker {
         JsonObject requestToServer = requestBuilder.build();
 
         try {
-            if(service.getName().equals("votar")){
+            if(service.getName().equals("votar") || service.getName().equals("registrar")){
                 System.out.println("El servicio votar se ejecutará en el servidor: " + tempIp + ":" + tempPort);
                 return Client.conexion(requestToServer, tempIp, tempPort);
             }
@@ -205,9 +206,8 @@ public class Broker {
         if(servicesEquals.size() == 1){
             return servicesEquals.get(0);
         }else{
-        Random random = new Random();
-        int numRandom = random.nextInt(listOfServices.size());
-        return servicesEquals.get(numRandom);
+         int n = new SplittableRandom().nextInt(0, servicesEquals.size());
+         return servicesEquals.get(n);
         }
     }
 

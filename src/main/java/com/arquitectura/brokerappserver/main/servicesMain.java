@@ -12,11 +12,10 @@ import com.arquitectura.brokerappserver.model.*;
 
 public class servicesMain {
     public static void main(String[] args) {
-        //Por el momento ya está el caparazón de los servicios, y de los servicios votar y contar
-        // Ya está hecha un poco de su lógica. 
+
         DAOProductos.readProductsFile();
         //Dirrecion y puerto que utilizarán los servicios
-        String SERVER_IP = "192.168.0.149";
+        String SERVER_IP = "localhost";
         int PORT = 25567;
         //mandar servicio a broker
         Service service = new ServiceCount();
