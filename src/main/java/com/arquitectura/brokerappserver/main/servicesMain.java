@@ -15,8 +15,8 @@ public class servicesMain {
 
         DAOProductos.readProductsFile();
         //Dirrecion y puerto que utilizarán los servicios
-        String SERVER_IP = "localhost";
-        int PORT = 25567;
+        String SERVER_IP = "192.168.252.49";
+        int PORT = 25566;
         //mandar servicio a broker
         Service service = new ServiceCount();
         service.registerService(SERVER_IP, PORT);
